@@ -1,0 +1,20 @@
+.container {
+    display: grid;
+    grid-template-rows: 200px 1fr;
+
+    > :first-child {
+        background: #DDE2E9;
+        padding: 70px;
+        > * {
+          margin: auto;
+    
+        }
+    }
+    > .result {
+        color: #344663;
+        margin: 0;
+        span {
+            color: rgb(99, 112, 133);
+        }
+    }
+}

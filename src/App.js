@@ -1,11 +1,17 @@
-import React from 'react';
-import Gallery from './scenes/Gallery'
+import React, { useState} from 'react';
+import Gallery from './scenes/Gallery';
+import Modal from './components/Modal'
 import './App.css';
 
 function App() {
+  const [ modalDisplay, setModalDisplay ] = useState(false);
   return (
     <div className="App">
-      <Gallery/>
+      <Gallery setModalDisplay={setModalDisplay} />
+      <Modal 
+        modalDisplay={modalDisplay}
+        setModalDisplay={setModalDisplay}
+      />
     </div>
   );
 }
