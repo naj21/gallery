@@ -30,23 +30,27 @@ const RSearchGroup = styled.div`
   }
 `
 
-const Search = () => {
-  const handleSearch = (value) => {
-      console.log(value)
-    const api = `https://source.unsplash.com/search/photos?page=1&query=${value}`;
-    fetch(api,
-        {})
-      .then(images => {
-        
-      })
+const Search = ({ setImages, setIsLoading, setResult }) => {
+  const handleSearch = async (value) => {
+    console.log(value)
+    const api = `https://api.unsplash.com/search/photos?client_id=7d00dac39ad904ca430ef93913e550192f1a70a80f00e3598a100c147591d0b7&query=${value}&per_page=7`;
+    const fetchData = () => fetch(api);
+    const res = await fetchData();
+    const images = await res.json();
+    setImages(images.results);
+    setIsLoading();
   }
   return (
       <div>
         <RSearchGroup>
-            <FaSearch/>
+            <FaSearch />
             <RSearch 
                 placeholder="Search for photo" 
-                onChange={(e) => handleSearch(e.target.value)} 
+                onKeyUp={(e) => {
+                    e.keyCode === 13 && handleSearch(e.target.value)
+                    e.keyCode === 13 && setIsLoading(e.target.value)
+                    e.keyCode === 13 && setResult(e.target.value)
+                }} 
             />
         </RSearchGroup>
     </div>

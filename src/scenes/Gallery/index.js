@@ -1,20 +1,32 @@
 import React, { useState, useEffect } from 'react';
 // import { HairCut } from '../../assets/images';
 // import { Carousel, Slides, Slide, SlideNav, SlideNavItem, Controls, IconButton, ProgressBar } from '/Users/mac/Documents/gallery/src/components/Carousel/index.js';
-// import {
+import {
 //   FaPlay,
 //   FaPause,
 //   FaForward,
 //   FaBackward,
-// } from 'react-icons/fa';
+  FaArrowLeft
+} from 'react-icons/fa';
 import Photos from '/Users/mac/Documents/gallery/src/components/Photos/index.js'
 import Search from '../../components/Search';
 import './Gallery.scss'
 
 const Gallery = ({ setModalDisplay }) => {
+  const [ images, setImages ] = useState([]);
+  const [ isLoading, setIsLoading ] = useState(null);
+  const [ result, setResult ] = useState(null);
+
+  const fetchData = async () => {
+    const api = `https://api.unsplash.com/photos?client_id=7d00dac39ad904ca430ef93913e550192f1a70a80f00e3598a100c147591d0b7&per_page=7`;
+    const res = await fetch(api);
+    setImages(await res.json());
+  }
+  useEffect(() => {
+      fetchData();
+  }, []);
   // const [ currentIndex, setCurrentIndex ] = useState(0);
   // const [ isPlaying, setIsPlaying ] = useState(false);
-  const isSearch = true;
   // const timeoutDuration = 2000;
 
   // useEffect(() => {
@@ -77,11 +89,17 @@ const Gallery = ({ setModalDisplay }) => {
         duration = {timeoutDuration}
       />
     </Carousel> */}
-      {isSearch
-        ? <h2 className="result">Search Result for <span>"Fun"</span></h2>
-        : <Search />
-      }   
-      <Photos setModalDisplay={setModalDisplay}  />
+      <div>
+        <FaArrowLeft onClick={() => setResult(null)} className={(!result && !isLoading) && "hide"} />
+        {isLoading && !result
+          ? <h2 className="result">Searching for <span>"{isLoading}"</span></h2>
+          : !result && <Search setImages={setImages} setIsLoading={setIsLoading} setResult={setResult} />
+        }  
+        {result 
+          && <h2 className="result">Search Results for <span>"{result}"</span></h2>
+        } 
+      </div> 
+      <Photos setModalDisplay={setModalDisplay}  images={images} />
     </div>
   )
 }

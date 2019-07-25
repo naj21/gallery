@@ -5,16 +5,29 @@
     > :first-child {
         background: #DDE2E9;
         padding: 70px;
+        position: relative;
+        display: flex;
         > * {
-          margin: auto;
-    
+          align-self: center;
         }
-    }
-    > .result {
-        color: #344663;
-        margin: 0;
-        span {
+        >:nth-child(2) {
+            margin: 0 40px 0 20px;
+            flex-grow: 1;
+        }
+        > svg {
+            font-size: 20px;
+            cursor: pointer;
             color: rgb(99, 112, 133);
+        }
+        .hide {
+            visibility: hidden;
+        }
+        > .result {
+            color: #344663;
+            font-size: 30px;
+            span {
+                color: rgb(99, 112, 133);
+            }
         }
     }
 }

@@ -7,13 +7,13 @@ const Modal = ({ modalDisplay, setModalDisplay }) => {
         <div className={modalDisplay ? 'modal' : 'modal hidden'}>
             <FaTimes 
                 style={{color: 'white'}}
-                onClick={() => setModalDisplay(false)}
+                onClick={() => setModalDisplay(null)}
              />
             <div>
-                <img src='' width='100%' height='100%' alt='' />
+                <img src={modalDisplay && modalDisplay.urls.full} alt={modalDisplay && modalDisplay.user.name} />
                 <div className="details">
-                    <p className="photographer">Blake Ibeks</p>
-                    <p className="location">Lagos, Nigeria</p>
+                    <p className="photographer">{modalDisplay && modalDisplay.user.name}</p>
+                    <p className="location">{modalDisplay && modalDisplay.user.location}</p>
                 </div>
             </div>
         </div>

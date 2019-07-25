@@ -1,26 +1,25 @@
 import React from "react";
 import "./Photos.scss";
 
-const Photos = ({ setModalDisplay }) => {
-    const photos = [1, 2, 3, 4, 5, 6, 7];
-    const isLoading = true;
+const Photos = ({ setModalDisplay, images, isLoading }) => {
+    let photos = [1, 2, 3, 4, 5, 6, 7];
+
+    if (images && images.length)  photos = [...images];
+
   return (
     <div className="PhotoGroup">
         {
-            photos.map(photo => (
-                <div onClick={()=>setModalDisplay(true)}>
-                    {isLoading
-                        ? (<div className="placeholder">
-                            <div></div>
-                            <div></div>
-                        </div>)
-                        : (<div className="image">
-                            <img src="" alt="unsplash"/>
-                            <div className="overlay"></div>
-                        </div>)
-                    }
-                </div>
-            ))
+            photos.map(image =>
+                isLoading
+                    ? (<div className="placeholder">
+                        <div></div>
+                        <div></div>
+                    </div>)
+                    : (<div className="image" onClick={()=>image.urls && setModalDisplay(image)}>
+                        <img src={image.urls && image.urls.full} alt={image.user && image.user.name} />
+                        <div className="overlay"></div>
+                    </div>)                    
+            )
         }
     </div>
   )
