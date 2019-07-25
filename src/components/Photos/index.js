@@ -16,7 +16,7 @@ const Photos = ({ setModalDisplay, images, isLoading }) => {
                         <div></div>
                     </div>)
                     : (<div className="image" onClick={()=>image.urls && setModalDisplay(image)}>
-                        <img src={image.urls && image.urls.full} alt={image.user && image.user.name} />
+                        <img src={image.urls && image.urls.full} alt={(image.user && image.user.name) || "UNSPLASH"} />
                         <div className="overlay"></div>
                     </div>)                    
             )
