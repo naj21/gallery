@@ -7,15 +7,15 @@
     background: rgba(0, 0, 0, 0.5);
     > :first-child {
         position: absolute;
-        margin-top: 50px;
+        margin-top: 40px;
         right: 50px;
         cursor: pointer;
     }
     > div {
-        margin: calc((100% - 85%) / 2) auto;
+        margin: 70px auto;
         display: flex;
         flex-direction: column;
-        width: 70%;
+        width: 80%;
         height: 70%;
         border-radius: 5px;
         > .details {
