@@ -4,7 +4,7 @@ import Modal from './components/Modal'
 import './App.css';
 
 function App() {
-  const [ modalDisplay, setModalDisplay ] = useState(false);
+  const [ modalDisplay, setModalDisplay ] = useState();
   return (
     <div className="App">
       <Gallery setModalDisplay={setModalDisplay} />

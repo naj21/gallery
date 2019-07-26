@@ -81,7 +81,7 @@ export const ProgressBar  = styled.div`
   opacity: 0.4;
   position: absolute;
   width: 0px;
-  animation: mymove 2s infinite;
+  animation:  ${props => `mymove ${props.duration} infinite`};
   animation-play-state: paused;
 
   @keyframes mymove {

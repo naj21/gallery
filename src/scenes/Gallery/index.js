@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { HairCut } from '../../assets/images';
-// import { Carousel, Slides, Slide, SlideNav, SlideNavItem, Controls, IconButton, ProgressBar } from '/Users/mac/Documents/gallery/src/components/Carousel/index.js';
-import {
-//   FaPlay,
-//   FaPause,
-//   FaForward,
-//   FaBackward,
-  FaArrowLeft
-} from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 import Photos from '/Users/mac/Documents/gallery/src/components/Photos/index.js'
 import Search from '../../components/Search';
 import './Gallery.scss'
@@ -25,71 +17,14 @@ const Gallery = ({ setModalDisplay }) => {
   useEffect(() => {
       fetchData();
   }, []);
-  // const [ currentIndex, setCurrentIndex ] = useState(0);
-  // const [ isPlaying, setIsPlaying ] = useState(false);
-  // const timeoutDuration = 2000;
-
-  // useEffect(() => {
-  //   if (isPlaying) {
-  //     const timeout = setTimeout(() => {
-  //       setCurrentIndex((currentIndex+1)%HairCut.length)
-  //     }, timeoutDuration);
-  //     return () => {clearTimeout(timeout)};
-  //   }
-  // }, [isPlaying, currentIndex])
     
   return (
     <div className="container">
-    {/* <Carousel>
-      <Slides>
-        {
-          HairCut.map((cut, index) => (
-            <Slide
-              key = {index}
-              img = {cut}
-              isCurrent = {index === currentIndex}
-            />
-          ))
-        }
-      </Slides>
-      <SlideNav>
-        {
-          HairCut.map((item, index) => (
-            <SlideNavItem
-              key = {index}
-              isCurrent = {index === currentIndex}
-              onClick = {() => {setCurrentIndex(index)}}
-            />
-          ))
-        }
-      </SlideNav>
-      <Controls>
-        <IconButton
-          children = { <FaBackward style={{color: 'white'}}/> }
-          isPlaying = {false}
-          onClick = {() => {
-            setCurrentIndex((currentIndex-1+HairCut.length)%HairCut.length);
-            setIsPlaying(false);
-          }}
-        />
-        <IconButton
-          children = { !isPlaying ? <FaPlay style={{color: 'white'}}/> : <FaPause style={{color: 'white'}}/> }
-          onClick = {() => { !isPlaying ? setIsPlaying(true) : setIsPlaying(false) }}
-        />
-        <IconButton
-          children = { <FaForward style={{color: 'white'}}/> }
-          onClick = {() => {
-            setCurrentIndex((currentIndex+1)%HairCut.length);
-            setIsPlaying(false);
-          }}
-        />
-      </Controls> */}
-      {/* <ProgressBar
-        isPlaying = {isPlaying}
-        duration = {timeoutDuration}
-      />
-    </Carousel> */}
+    
       <div>
+        <div onClick={() => setModalDisplay(images)}>
+          <h3>SLIDESHOW</h3>
+        </div>
         <FaArrowLeft onClick={() => setResult(null)} className={(!result && !isLoading) && "hide"} />
         {isLoading && !result
           ? <h2 className="result">Searching for <span>"{isLoading}"</span></h2>
